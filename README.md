@@ -1,1 +1,1 @@
-Coursera Front-end Web Development Course using Reactjs and Bootstrap
+Coursera Front-end Web Development Course with Reactjs and Bootstrap
