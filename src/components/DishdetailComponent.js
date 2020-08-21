@@ -25,6 +25,7 @@ const minLenght =(len) => (val) => (val) && (val.length >= len);
             this.toggleModal()
             console.log("Current State is: "+ JSON.stringify(values));
             alert("Current State is: "+ JSON.stringify(values));
+            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
         }
         render(){
             return(
@@ -80,7 +81,7 @@ const minLenght =(len) => (val) => (val) && (val.length >= len);
             )
         }
     }
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, dishId}){
         if (comments == null){
             return(
                 <div></div>
@@ -101,7 +102,7 @@ const minLenght =(len) => (val) => (val) && (val.length >= len);
                     {cmnts}
                 </div>
                 <div>
-                    <CommentForm></CommentForm>
+                    <CommentForm dishId ={dishId} addComment={addComment}></CommentForm>
                 </div>
 
             </div>
@@ -137,7 +138,6 @@ const minLenght =(len) => (val) => (val) && (val.length >= len);
             <div className="container">
             <div className="row">
                 <Breadcrumb>
-
                     <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
                     <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
                 </Breadcrumb>
@@ -152,7 +152,9 @@ const minLenght =(len) => (val) => (val) && (val.length >= len);
                     <RenderDish dish={props.dish} />
                 </div>
                 <div className='col-12'>
-                    <RenderComments comments={props.comments} />
+                    <RenderComments comments={props.comments}
+                        addComment={props.addComment}
+                        dishId={props.dish.id}/>
 
                 </div>
             </div>
